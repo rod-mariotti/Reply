@@ -10,7 +10,8 @@ class Region:
         self.prov_region_id = prov_region_id
         self.resources = resources
         self.num_pack = num_pack
-        self.cost_pack = latency_pack
+        self.cost_pack = cost_pack
+		self.latency_pack = latency_pack
 
 class Proj:
     def __inti__(self, penalty, country_id, request):
