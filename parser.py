@@ -27,28 +27,26 @@ class Proj:
 
 def read_provider(filename, provider_list):
     line = filename.readline().rstrip()
-    line = line.split()
+    line = line.split( )
+    line[1] = int(line[1])
 
     provider_list.append(Provider(line[1]))
 
 def read_region(filename, provider_region_list, region_id, services_num):
     line_a = filename.readline().rstrip()
-    line_a = line_a.split()
+    line_a = line_a.split( )
 
     line_b = filename.readline().rstrip()
-    line_b = line_b.split()
+    line_b = line_b.split( )
 
-    provider_region_list[region_id] = Region(region_id, line_a[-services_num:], line_a[0], line_a[1], line_b)
+    provider_region_list.append(Region(region_id, line_a[-services_num:], line_a[0], line_a[1], line_b))
     
 
 with open('input.in', encoding='utf-8') as input_file:
     first_line = input_file.readline().rstrip()
-    provider_num, services_num, countries_num, proj_num = first_line.split( )
+    first_line = first_line.split( )
 
-    int(provider_num)
-    int(services_num)
-    int(countries_num)
-    int(provider_num)
+    provider_num, services_num, countries_num, proj_num = [int(i) for i in first_line] 
 
     provider = []
     proj = [None for i in range(proj_num)]
@@ -56,11 +54,11 @@ with open('input.in', encoding='utf-8') as input_file:
     input_file.readline()
     input_file.readline()
     
-    for prov in range(prvider_num - 1):
+    for prov in range(provider_num - 1):
         read_provider(input_file, provider)
 
         for reg in range(provider[prov].num_region):
             input_file.readline() # salta nome regione
             read_region(input_file, provider[prov].region, reg, services_num)
 
-print(provider[0].region[0].latency_pack)
+print(provider[1].region[0].resources)
